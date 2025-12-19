@@ -1,0 +1,122 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'templates/**'
+      - 'package.json'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # Job 1: Deploy VitePress to GitHub Pages
+  deploy-web:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build VitePress site
+        run: npm run docs:build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # Job 2: Build DOCX and upload as release artifact
+  build-docx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc
+
+      - name: Install Mermaid CLI
+        run: |
+          npm install -g @mermaid-js/mermaid-cli
+          npm install -g mermaid-filter
+
+      - name: Setup Puppeteer for Mermaid
+        run: |
+          npx puppeteer browsers install chrome
+
+      - name: Build DOCX
+        run: |
+          # Create output directory
+          mkdir -p output
+
+          # Build combined DOCX with table of contents
+          pandoc \
+            docs/xview-challenges/README.md \
+            docs/xview-challenges/xview1/dataset-xview1-detection.md \
+            docs/xview-challenges/xview1/winner-*.md \
+            docs/xview-challenges/xview2/dataset-xview2-xbd-building-damage.md \
+            docs/xview-challenges/xview2/winner-*.md \
+            docs/xview-challenges/xview3/dataset-xview3-sar-maritime.md \
+            docs/xview-challenges/xview3/winner-*.md \
+            -o output/xview-research.docx \
+            --reference-doc=templates/reference.docx \
+            --toc \
+            --toc-depth=3 \
+            -F mermaid-filter \
+            --metadata title="Nghiên cứu xView Challenge Series" \
+            --metadata author="Research Team" \
+            --metadata date="$(date +%Y-%m-%d)" \
+            --standalone
+
+      - name: Upload DOCX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: xview-research-docx
+          path: output/xview-research.docx
+          retention-days: 30
+
+      - name: Create Release (on tag)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: output/xview-research.docx
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

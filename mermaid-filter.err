@@ -1,0 +1,28 @@
+
+Error: Failed to launch the browser process!
+[1218/231128.654266:FATAL:zygote_host_impl_linux.cc(127)] No usable sandbox! Update your kernel or see https://chromium.googlesource.com/chromium/src/+/main/docs/linux/suid_sandbox_development.md for more information on developing with the SUID sandbox. If you want to live dangerously and need an immediate workaround, you can try using --no-sandbox.
+#0 0x5aec89584f72 base::debug::CollectStackTrace()
+#1 0x5aec895714b3 base::debug::StackTrace::StackTrace()
+#2 0x5aec894c3fbf logging::LogMessage::~LogMessage()
+#3 0x5aec87ce0c16 content::ZygoteHostImpl::Init()
+#4 0x5aec88a1ab23 content::ContentMainRunnerImpl::Initialize()
+#5 0x5aec88a18427 content::RunContentProcess()
+#6 0x5aec88a18606 content::ContentMain()
+#7 0x5aec890021fa headless::HeadlessShellMain()
+#8 0x5aec85139255 ChromeMain
+#9 0x7b13cee2a1ca (/usr/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9)
+#10 0x7b13cee2a28b __libc_start_main
+#11 0x5aec8513902a _start
+
+
+
+TROUBLESHOOTING: https://pptr.dev/troubleshooting
+
+    at Interface.onClose (file:///home/tchatb/.nvm/versions/node/v22.17.0/lib/node_modules/mermaid-filter/node_modules/@puppeteer/browsers/lib/esm/launch.js:253:24)
+    at Interface.emit (node:events:530:35)
+    at Interface.close (node:internal/readline/interface:534:10)
+    at Socket.onend (node:internal/readline/interface:260:10)
+    at Socket.emit (node:events:530:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+

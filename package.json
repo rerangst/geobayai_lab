@@ -1,0 +1,25 @@
+{
+  "name": "sen-doc",
+  "version": "1.0.0",
+  "description": "xView Challenge Series Documentation - Research on satellite imagery datasets",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "build:docx": "bash scripts/build-docx.sh"
+  },
+  "devDependencies": {
+    "vitepress": "^1.5.0",
+    "vitepress-plugin-mermaid": "^2.0.17",
+    "mermaid": "^11.0.0"
+  },
+  "keywords": [
+    "xview",
+    "satellite-imagery",
+    "documentation",
+    "research"
+  ],
+  "author": "",
+  "license": "MIT"
+}

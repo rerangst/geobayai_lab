@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+.venv/
+
+# Build output
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+output/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+*.temp
