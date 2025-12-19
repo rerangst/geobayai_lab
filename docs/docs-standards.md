@@ -392,9 +392,119 @@ Sử dụng hiếm khi để tách các phần chính
 
 ---
 
-## 8. Code Style Guide
+## 8. Quy Định về Code trong Báo Cáo Khoa Học
 
-### 8.1. Inline Code
+> **QUAN TRỌNG:** Đây là báo cáo nghiên cứu khoa học, KHÔNG phải tài liệu lập trình. Hạn chế tối đa việc đưa code vào tài liệu.
+
+### 8.1. Nguyên Tắc Cốt Lõi
+
+**HẠN CHẾ CODE - ƯU TIÊN MINH HỌA**
+
+| Không nên | Nên làm |
+|-----------|---------|
+| Đưa code snippet dài | Dùng sơ đồ flowchart minh họa thuật toán |
+| Copy-paste code từ GitHub | Dùng pseudocode hoặc mô tả văn bản |
+| Giải thích bằng code | Dùng diagram Mermaid hoặc hình ảnh |
+| Liệt kê API/function calls | Dùng bảng so sánh hoặc biểu đồ |
+
+### 8.2. Khi Nào ĐƯỢC Dùng Code
+
+Chỉ sử dụng code khi **THỰC SỰ CẦN THIẾT**:
+
+1. **Công thức toán học** không thể diễn đạt bằng LaTeX
+2. **Cấu hình** quan trọng (2-5 dòng tối đa)
+3. **Pseudocode** minh họa thuật toán (không phải code thật)
+4. **Command line** cơ bản để reproduce kết quả
+
+### 8.3. Thay Thế Code Bằng Minh Họa
+
+**Ví dụ 1: Thay vì code mô tả kiến trúc CNN**
+
+❌ **Không nên:**
+```python
+model = nn.Sequential(
+    nn.Conv2d(3, 64, 3),
+    nn.ReLU(),
+    nn.MaxPool2d(2),
+    nn.Conv2d(64, 128, 3),
+    ...
+)
+```
+
+✅ **Nên dùng Mermaid:**
+```mermaid
+graph LR
+    A["Input 3×224×224"] --> B["Conv 64"]
+    B --> C["ReLU"]
+    C --> D["MaxPool"]
+    D --> E["Conv 128"]
+    E --> F["..."]
+    style A fill:#e1f5fe
+    style F fill:#c8e6c9
+```
+
+**Ví dụ 2: Thay vì code training loop**
+
+❌ **Không nên:** 20 dòng code Python
+
+✅ **Nên dùng flowchart:**
+```mermaid
+flowchart TD
+    A["Khởi tạo Model"] --> B["Load Dữ liệu"]
+    B --> C{"Epoch < Max?"}
+    C -->|Có| D["Forward Pass"]
+    D --> E["Tính Loss"]
+    E --> F["Backward Pass"]
+    F --> G["Cập nhật Weights"]
+    G --> C
+    C -->|Không| H["Lưu Model"]
+```
+
+### 8.4. Sử Dụng AI để Tạo Hình Ảnh Minh Họa
+
+Với các kiến trúc/sơ đồ phức tạp khó vẽ bằng Mermaid:
+
+1. **Kích hoạt skill `ai-multimodal`** để generate hình ảnh
+2. **Mô tả chi tiết** kiến trúc cần minh họa
+3. **Lưu hình ảnh** vào `research/assets/images/`
+4. **Đặt caption** rõ ràng bằng tiếng Việt
+
+#### 8.4.1. Yêu Cầu Về Hình Ảnh AI-Generated
+
+| Yêu cầu | Chi tiết |
+|---------|----------|
+| **Phông nền** | Nền SÁNG là chủ đạo (trắng, xám nhạt, pastel). HẠN CHẾ nền tối |
+| **Ngôn ngữ** | Chữ trong hình phải bằng TIẾNG VIỆT. Chỉ dùng tiếng Anh cho thuật ngữ không thể dịch |
+| **Độ tương phản** | Đảm bảo chữ đọc được rõ trên nền sáng |
+| **Style** | Học thuật, chuyên nghiệp, phù hợp báo cáo khoa học |
+
+#### 8.4.2. Template Prompt cho AI
+
+```
+Tạo sơ đồ [loại diagram] minh họa [nội dung]:
+- Phông nền: sáng (trắng hoặc xám nhạt)
+- Chữ trong hình: tiếng Việt
+- Style: học thuật, chuyên nghiệp
+- [Mô tả chi tiết các thành phần]
+```
+
+**Ví dụ prompt:**
+> "Tạo sơ đồ kiến trúc ResNet-50 với các khối residual, hiển thị kết nối tắt (skip connections), đầu vào 224×224 RGB, đầu ra 1000 lớp. Phông nền sáng, chữ tiếng Việt, style học thuật."
+
+### 8.5. Giới Hạn Code (Nếu Buộc Phải Dùng)
+
+| Loại | Giới hạn |
+|------|----------|
+| Inline code | Tên hàm/biến ngắn: `conv2d`, `batch_size` |
+| Code block | Tối đa 5-10 dòng |
+| Pseudocode | Tối đa 15 dòng, dùng tiếng Việt/Anh rõ ràng |
+| Config | Chỉ các tham số quan trọng |
+
+---
+
+## 9. Code Style Guide (Khi Buộc Phải Dùng)
+
+### 9.1. Inline Code
 ```markdown
 Lệnh `python script.py` dùng để chạy script
 Hàm `conv2d()` thực hiện phép tích chập

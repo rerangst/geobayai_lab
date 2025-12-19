@@ -4,10 +4,10 @@
   "description": "xView Challenge Series Documentation - Research on satellite imagery datasets",
   "type": "module",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
-    "build:docx": "bash scripts/build-docx.sh"
+    "docs:dev": "vitepress dev research",
+    "docs:build": "vitepress build research",
+    "docs:preview": "vitepress preview research",
+    "build:docx": "bash scripts/build-unified-docx.sh"
   },
   "devDependencies": {
     "vitepress": "^1.5.0",

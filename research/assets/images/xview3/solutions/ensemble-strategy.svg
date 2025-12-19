@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="b4Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="b5Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#34d399;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="v2sGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1e293b">12-Model Ensemble Strategy</text>
+  <text x="400" y="55" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#64748b">3 Backbones x 4 Folds = 12 Models</text>
+
+  <!-- EfficientNet-B4 Row -->
+  <g transform="translate(50, 80)">
+    <rect x="-10" y="-10" width="280" height="100" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+    <text x="130" y="10" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e40af">EfficientNet-B4</text>
+    <text x="130" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#3b82f6">Score: 0.51-0.52</text>
+
+    <rect x="5" y="40" width="55" height="35" rx="4" fill="url(#b4Grad)"/>
+    <text x="32" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Fold 1</text>
+
+    <rect x="70" y="40" width="55" height="35" rx="4" fill="url(#b4Grad)"/>
+    <text x="97" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Fold 2</text>
+
+    <rect x="135" y="40" width="55" height="35" rx="4" fill="url(#b4Grad)"/>
+    <text x="162" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Fold 3</text>
+
+    <rect x="200" y="40" width="55" height="35" rx="4" fill="url(#b4Grad)"/>
+    <text x="227" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Fold 4</text>
+  </g>
+
+  <!-- EfficientNet-B5 Row -->
+  <g transform="translate(50, 195)">
+    <rect x="-10" y="-10" width="280" height="100" rx="8" fill="#dcfce7" stroke="#10b981" stroke-width="2"/>
+    <text x="130" y="10" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#047857">EfficientNet-B5</text>
+    <text x="130" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#10b981">Score: 0.53-0.55</text>
+
+    <rect x="5" y="40" width="55" height="35" rx="4" fill="url(#b5Grad)"/>
+    <text x="32" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Fold 1</text>
+
+    <rect x="70" y="40" width="55" height="35" rx="4" fill="url(#b5Grad)"/>
+    <text x="97" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Fold 2</text>
+
+    <rect x="135" y="40" width="55" height="35" rx="4" fill="url(#b5Grad)"/>
+    <text x="162" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Fold 3</text>
+
+    <rect x="200" y="40" width="55" height="35" rx="4" fill="url(#b5Grad)"/>
+    <text x="227" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Fold 4</text>
+  </g>
+
+  <!-- EfficientNet-V2S Row -->
+  <g transform="translate(50, 310)">
+    <rect x="-10" y="-10" width="280" height="100" rx="8" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="130" y="10" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#6d28d9">EfficientNet-V2S</text>
+    <text x="130" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8b5cf6">Score: 0.55-0.62 (Best)</text>
+
+    <rect x="5" y="40" width="55" height="35" rx="4" fill="url(#v2sGrad)"/>
+    <text x="32" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Fold 1</text>
+
+    <rect x="70" y="40" width="55" height="35" rx="4" fill="url(#v2sGrad)"/>
+    <text x="97" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Fold 2</text>
+
+    <rect x="135" y="40" width="55" height="35" rx="4" fill="url(#v2sGrad)"/>
+    <text x="162" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Fold 3</text>
+
+    <rect x="200" y="40" width="55" height="35" rx="4" fill="url(#v2sGrad)"/>
+    <text x="227" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">Fold 4</text>
+  </g>
+
+  <!-- Arrows to aggregation (drawn as lines + polygons) -->
+  <line x1="330" y1="140" x2="415" y2="215" stroke="#64748b" stroke-width="2"/>
+  <polygon points="420,220 412,213 415,221" fill="#64748b"/>
+
+  <line x1="330" y1="250" x2="415" y2="250" stroke="#64748b" stroke-width="2"/>
+  <polygon points="420,250 413,246 413,254" fill="#64748b"/>
+
+  <line x1="330" y1="360" x2="415" y2="285" stroke="#64748b" stroke-width="2"/>
+  <polygon points="420,280 412,283 416,276" fill="#64748b"/>
+
+  <!-- Aggregation Box -->
+  <g transform="translate(430, 180)">
+    <rect x="0" y="0" width="150" height="140" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+    <text x="75" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#b45309">Aggregation</text>
+
+    <line x1="15" y1="45" x2="135" y2="45" stroke="#f59e0b" stroke-width="1"/>
+
+    <text x="75" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#92400e">Average</text>
+    <text x="75" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#92400e">Predictions</text>
+
+    <text x="75" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#b45309">+ TTA (H-Flip)</text>
+    <text x="75" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#d97706">+0.5-1% score</text>
+  </g>
+
+  <!-- Arrow to final -->
+  <line x1="590" y1="250" x2="625" y2="250" stroke="#64748b" stroke-width="2"/>
+  <polygon points="630,250 623,246 623,254" fill="#64748b"/>
+
+  <!-- Final Score Box -->
+  <g transform="translate(640, 165)">
+    <rect x="0" y="0" width="130" height="170" rx="10" fill="#dcfce7" stroke="#10b981" stroke-width="3"/>
+
+    <text x="65" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#047857">Final Score</text>
+
+    <line x1="10" y1="45" x2="120" y2="45" stroke="#10b981" stroke-width="1"/>
+
+    <text x="65" y="75" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#059669">0.617</text>
+    <text x="65" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#10b981">Holdout Set</text>
+
+    <line x1="10" y1="110" x2="120" y2="110" stroke="#10b981" stroke-width="1"/>
+
+    <text x="65" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#047857">3x Baseline</text>
+    <text x="65" y="148" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#059669">1st Place</text>
+    <text x="65" y="163" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#10b981">$150,000</text>
+  </g>
+
+  <!-- Bottom note -->
+  <rect x="40" y="410" width="720" height="30" rx="6" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <text x="400" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">
+    Ensemble diversity: Different backbones capture different features; 4-fold CV ensures robustness
+  </text>
+</svg>

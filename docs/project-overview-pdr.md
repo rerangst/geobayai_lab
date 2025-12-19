@@ -78,6 +78,40 @@
 - Tạo liên kết nội bộ với cross-reference
 - Danh sách tài liệu tham khảo ở cuối mỗi chương hoặc dự án
 
+### 2.3. Nguyên Tắc "Hạn Chế Code - Ưu Tiên Minh Họa"
+
+> **QUAN TRỌNG:** Đây là báo cáo nghiên cứu khoa học, KHÔNG phải tài liệu lập trình.
+
+#### 2.3.1. Nguyên Tắc Cốt Lõi
+- **Không đưa code dài** vào tài liệu (>10 dòng)
+- **Ưu tiên sơ đồ flowchart** thay vì giải thích bằng code
+- **Dùng Mermaid diagrams** cho kiến trúc, pipeline, thuật toán
+- **Dùng AI-generated images** cho kiến trúc phức tạp (ResNet, FPN, etc.)
+
+#### 2.3.2. Bảng So Sánh
+| Không nên | Nên làm |
+|-----------|---------|
+| Code snippet Python dài | Sơ đồ Mermaid flowchart |
+| Copy-paste code từ GitHub | Pseudocode hoặc văn bản |
+| Giải thích bằng code | Diagram hoặc hình ảnh AI |
+| Liệt kê API/function calls | Bảng so sánh hoặc biểu đồ |
+
+#### 2.3.3. Khi Được Phép Dùng Code
+1. Công thức toán học không thể biểu diễn bằng LaTeX
+2. Cấu hình quan trọng (2-5 dòng)
+3. Pseudocode minh họa thuật toán (tiếng Việt/Anh rõ ràng)
+4. Command line cơ bản để reproduce kết quả
+
+#### 2.3.4. Quy Trình Tạo Hình Minh Họa
+1. **Bước 1:** Xác định khái niệm cần minh họa
+2. **Bước 2:** Chọn loại diagram phù hợp:
+   - Flowchart: cho pipeline, thuật toán
+   - Architecture: cho kiến trúc mạng
+   - Sequence: cho quy trình xử lý
+3. **Bước 3:** Nếu Mermaid đủ → viết Mermaid code
+4. **Bước 4:** Nếu phức tạp → dùng skill `ai-multimodal` để generate hình
+5. **Bước 5:** Lưu hình vào `research/assets/images/` với caption rõ ràng
+
 ---
 
 ## 3. Tiêu Chuẩn Hình Ảnh và Diagram
@@ -128,10 +162,24 @@ graph LR
 - Cho so sánh trực quan giữa các phương pháp
 - **KHÔNG sử dụng** cho dữ liệu thực hoặc kết quả thực nghiệm
 
-#### 3.3.2. Prompt Template
-- Mô tả chi tiết: Loại diagram, các thành phần, bố cục
-- Yêu cầu style: Khoa học, chuyên nghiệp, màu sắc thích hợp
-- Độ phân giải: "high resolution, 4K, suitable for academic paper"
+#### 3.3.2. Yêu Cầu Bắt Buộc
+
+| Yêu cầu | Chi tiết |
+|---------|----------|
+| **Phông nền** | Nền SÁNG (trắng, xám nhạt, pastel). HẠN CHẾ nền tối |
+| **Ngôn ngữ** | Chữ trong hình bằng TIẾNG VIỆT. Chỉ tiếng Anh cho thuật ngữ không dịch được |
+| **Độ tương phản** | Đảm bảo chữ đọc rõ trên nền sáng |
+| **Style** | Học thuật, chuyên nghiệp, phù hợp báo cáo khoa học |
+| **Độ phân giải** | High resolution, 150+ DPI cho in ấn |
+
+#### 3.3.3. Prompt Template
+```
+Tạo sơ đồ [loại diagram] minh họa [nội dung]:
+- Phông nền: sáng (trắng hoặc xám nhạt)
+- Chữ trong hình: tiếng Việt
+- Style: học thuật, chuyên nghiệp
+- [Mô tả chi tiết các thành phần]
+```
 
 ---
 

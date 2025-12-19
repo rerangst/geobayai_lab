@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400">
+  <defs>
+    <linearGradient id="stepGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#dbeafe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bfdbfe;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="stepGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#dcfce7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bbf7d0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="stepGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fde68a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="stepGrad4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fce7f3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fbcfe8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="400" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e293b">CircleNet Processing Pipeline</text>
+
+  <!-- Step 1: SAR Input -->
+  <g transform="translate(30, 60)">
+    <rect width="160" height="280" rx="10" fill="url(#stepGrad1)" stroke="#3b82f6" stroke-width="2"/>
+    <text x="80" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e40af">1. SAR Input</text>
+
+    <!-- SAR image representation -->
+    <rect x="20" y="40" width="120" height="80" rx="4" fill="#1e3a5f" stroke="#60a5fa"/>
+    <text x="80" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#93c5fd">Sentinel-1 SAR</text>
+    <text x="80" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#93c5fd">~29000x24000 px</text>
+    <text x="80" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#93c5fd">VV + VH polarization</text>
+
+    <line x1="20" y1="135" x2="140" y2="135" stroke="#3b82f6" stroke-width="1"/>
+    <text x="80" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#1e40af">Preprocessing</text>
+
+    <text x="80" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1e40af">Sigmoid Normalization</text>
+    <text x="80" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#3b82f6">s((x+40)/15)</text>
+
+    <line x1="20" y1="210" x2="140" y2="210" stroke="#3b82f6" stroke-width="1"/>
+    <text x="80" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1e40af">Tiling (overlapping)</text>
+    <text x="80" y="248" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#3b82f6">2048x2048 tiles</text>
+    <text x="80" y="263" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#3b82f6">stride=512</text>
+  </g>
+
+  <!-- Arrow 1-2 -->
+  <line x1="200" y1="200" x2="225" y2="200" stroke="#64748b" stroke-width="2"/>
+  <polygon points="230,200 223,196 223,204" fill="#64748b"/>
+
+  <!-- Step 2: Model Inference -->
+  <g transform="translate(240, 60)">
+    <rect width="180" height="280" rx="10" fill="url(#stepGrad2)" stroke="#10b981" stroke-width="2"/>
+    <text x="90" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#047857">2. Model Inference</text>
+
+    <!-- 12 model ensemble -->
+    <rect x="15" y="40" width="150" height="60" rx="6" fill="#059669" stroke="#10b981"/>
+    <text x="90" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white">12-Model Ensemble</text>
+    <text x="90" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#d1fae5">3 backbones x 4 folds</text>
+    <text x="90" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#d1fae5">B4 | B5 | V2S</text>
+
+    <!-- CircleNet box -->
+    <rect x="25" y="110" width="130" height="50" rx="4" fill="#34d399" stroke="#10b981"/>
+    <text x="90" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#064e3b">CircleNet</text>
+    <text x="90" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#064e3b">Encoder + Decoder</text>
+    <text x="90" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#064e3b">Stride-2 Output</text>
+
+    <line x1="15" y1="175" x2="165" y2="175" stroke="#10b981" stroke-width="1"/>
+    <text x="90" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#047857">4 Output Heads</text>
+
+    <text x="90" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#047857">* Objectness heatmap</text>
+    <text x="90" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#047857">* Is vessel (yes/no)</text>
+    <text x="90" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#047857">* Is fishing (yes/no)</text>
+    <text x="90" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#047857">* Length estimation (m)</text>
+
+    <!-- TTA -->
+    <rect x="25" y="270" width="130" height="25" rx="4" fill="#a7f3d0" stroke="#10b981"/>
+    <text x="90" y="287" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#064e3b">TTA: Horizontal Flip</text>
+  </g>
+
+  <!-- Arrow 2-3 -->
+  <line x1="430" y1="200" x2="455" y2="200" stroke="#64748b" stroke-width="2"/>
+  <polygon points="460,200 453,196 453,204" fill="#64748b"/>
+
+  <!-- Step 3: Post-processing -->
+  <g transform="translate(470, 60)">
+    <rect width="170" height="280" rx="10" fill="url(#stepGrad3)" stroke="#f59e0b" stroke-width="2"/>
+    <text x="85" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#b45309">3. Post-processing</text>
+
+    <!-- Merge tiles -->
+    <rect x="15" y="45" width="140" height="55" rx="6" fill="#fbbf24" stroke="#f59e0b"/>
+    <text x="85" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#78350f">Merge Tiles</text>
+    <text x="85" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#78350f">Weighted averaging</text>
+    <text x="85" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#78350f">in overlap regions</text>
+
+    <!-- Peak detection -->
+    <rect x="15" y="110" width="140" height="50" rx="6" fill="#fcd34d" stroke="#f59e0b"/>
+    <text x="85" y="130" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#78350f">Peak Detection</text>
+    <text x="85" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#78350f">Local maxima finding</text>
+    <text x="85" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#78350f">min_distance=10px</text>
+
+    <!-- NMS -->
+    <rect x="15" y="170" width="140" height="45" rx="6" fill="#fde68a" stroke="#f59e0b"/>
+    <text x="85" y="188" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#78350f">NMS</text>
+    <text x="85" y="203" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#78350f">Remove duplicates</text>
+
+    <!-- Thresholding -->
+    <rect x="15" y="225" width="140" height="50" rx="6" fill="#fef3c7" stroke="#f59e0b"/>
+    <text x="85" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#78350f">Thresholding</text>
+    <text x="85" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#78350f">conf > 0.5</text>
+    <text x="85" y="272" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#78350f">Filter low confidence</text>
+  </g>
+
+  <!-- Arrow 3-4 -->
+  <line x1="650" y1="200" x2="675" y2="200" stroke="#64748b" stroke-width="2"/>
+  <polygon points="680,200 673,196 673,204" fill="#64748b"/>
+
+  <!-- Step 4: Output -->
+  <g transform="translate(690, 60)">
+    <rect width="180" height="280" rx="10" fill="url(#stepGrad4)" stroke="#ec4899" stroke-width="2"/>
+    <text x="90" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#be185d">4. Detection Output</text>
+
+    <!-- Detection result visualization -->
+    <rect x="15" y="45" width="150" height="100" rx="6" fill="#1e3a5f" stroke="#f472b6"/>
+    <!-- Ship markers -->
+    <circle cx="45" cy="75" r="6" fill="#22d3ee" stroke="white" stroke-width="1"/>
+    <circle cx="85" cy="95" r="8" fill="#22d3ee" stroke="white" stroke-width="1"/>
+    <circle cx="125" cy="70" r="5" fill="#f87171" stroke="white" stroke-width="1"/>
+    <circle cx="100" cy="120" r="7" fill="#22d3ee" stroke="white" stroke-width="1"/>
+    <circle cx="55" cy="110" r="4" fill="#f87171" stroke="white" stroke-width="1"/>
+
+    <!-- Legend for detections -->
+    <circle cx="30" cy="158" r="5" fill="#22d3ee"/>
+    <text x="42" y="162" font-family="Arial, sans-serif" font-size="8" fill="#be185d">Vessel</text>
+    <circle cx="90" cy="158" r="5" fill="#f87171"/>
+    <text x="102" y="162" font-family="Arial, sans-serif" font-size="8" fill="#be185d">Fishing</text>
+
+    <line x1="15" y1="175" x2="165" y2="175" stroke="#ec4899" stroke-width="1"/>
+    <text x="90" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#be185d">Per Detection</text>
+
+    <text x="25" y="215" font-family="Arial, sans-serif" font-size="9" fill="#be185d">* Position (x, y)</text>
+    <text x="25" y="232" font-family="Arial, sans-serif" font-size="9" fill="#be185d">* Confidence score</text>
+    <text x="25" y="249" font-family="Arial, sans-serif" font-size="9" fill="#be185d">* Is vessel: True/False</text>
+    <text x="25" y="266" font-family="Arial, sans-serif" font-size="9" fill="#be185d">* Is fishing: True/False</text>
+    <text x="25" y="283" font-family="Arial, sans-serif" font-size="9" fill="#be185d">* Length: meters</text>
+  </g>
+
+  <!-- Bottom note -->
+  <rect x="30" y="355" width="840" height="35" rx="6" fill="#f1f5f9" stroke="#e2e8f0"/>
+  <text x="450" y="377" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#64748b">
+    Full scene (~29000x24000 pixels) processed in overlapping tiles - merged - NMS - final detections with attributes
+  </text>
+</svg>
