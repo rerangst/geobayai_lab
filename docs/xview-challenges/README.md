@@ -203,12 +203,5 @@ docs/xview-challenges/
 
 ---
 
-## Báo Cáo Brainstorm
-
-Để xem tóm tắt nghiên cứu ban đầu và phân tích khả thi, xem:
-- [Báo Cáo Brainstorm](../../plans/reports/brainstorm-20251218-xview-dataset-research.md)
-
----
-
 *Tài liệu được tạo: 2024-12-18*
 *Tổng số tài liệu: 18 (3 dataset + 15 giải pháp chiến thắng)*

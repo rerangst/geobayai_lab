@@ -80,6 +80,8 @@ jobs:
 
       - name: Setup Puppeteer for Mermaid
         run: |
+          # Install Chrome dependencies
+          sudo apt-get install -y libgbm1 libasound2 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libpango-1.0-0 libcairo2
           npx puppeteer browsers install chrome
 
       - name: Build DOCX
@@ -87,7 +89,12 @@ jobs:
           # Create output directory
           mkdir -p output
 
-          # Build combined DOCX with table of contents
+          # Find Chrome path
+          CHROME_PATH=$(find /home/runner/.cache/puppeteer -name "chrome" -type f 2>/dev/null | head -1)
+          export PUPPETEER_EXECUTABLE_PATH="$CHROME_PATH"
+          echo "Using Chrome at: $CHROME_PATH"
+
+          # Build combined DOCX with table of contents (skip mermaid filter if fails)
           pandoc \
             docs/xview-challenges/README.md \
             docs/xview-challenges/xview1/dataset-xview1-detection.md \
@@ -101,6 +108,22 @@ jobs:
             --toc \
             --toc-depth=3 \
             -F mermaid-filter \
+            --metadata title="Nghiên cứu xView Challenge Series" \
+            --metadata author="Research Team" \
+            --metadata date="$(date +%Y-%m-%d)" \
+            --standalone || \
+          pandoc \
+            docs/xview-challenges/README.md \
+            docs/xview-challenges/xview1/dataset-xview1-detection.md \
+            docs/xview-challenges/xview1/winner-*.md \
+            docs/xview-challenges/xview2/dataset-xview2-xbd-building-damage.md \
+            docs/xview-challenges/xview2/winner-*.md \
+            docs/xview-challenges/xview3/dataset-xview3-sar-maritime.md \
+            docs/xview-challenges/xview3/winner-*.md \
+            -o output/xview-research.docx \
+            --reference-doc=templates/reference.docx \
+            --toc \
+            --toc-depth=3 \
             --metadata title="Nghiên cứu xView Challenge Series" \
             --metadata author="Research Team" \
             --metadata date="$(date +%Y-%m-%d)" \
