@@ -28,7 +28,7 @@ Trong đó $\mathcal{F}(\mathbf{x}, \{W_i\})$ biểu diễn các phép biến đ
 
 Hình 5.4 minh họa cấu trúc của residual block cơ bản và bottleneck, cùng với các cấu hình mạng khác nhau.
 
-![ResNet Architecture](../../assets/images/chuong-05-torchgeo/papers/resnet_page4.png)
+![ResNet Architecture](../../assets/images/chuong-03-torchgeo/papers/resnet_page4.png)
 
 **Hình 5.4:** So sánh kiến trúc mạng: VGG-19 (trái), 34-layer plain network (giữa), 34-layer residual network (phải). Các đường tắt (shortcuts) được biểu thị bằng mũi tên nét liền [He et al., 2016]
 
@@ -92,7 +92,7 @@ graph LR
 
 **Hình 5.5:** Pipeline xử lý của Vision Transformer
 
-![ViT Patch Example](../../assets/images/chuong-05-torchgeo/papers/vit_page3_fig2.png)
+![ViT Patch Example](../../assets/images/chuong-03-torchgeo/papers/vit_page3_fig2.png)
 
 **Hình 5.5b:** Ví dụ chia ảnh thành 9 patches (3×3) - mỗi patch được xử lý như một token trong Transformer [Dosovitskiy et al., 2021]
 
@@ -133,11 +133,11 @@ Swin Transformer [Liu et al., 2021] giải quyết vấn đề computational com
 
 Ý tưởng cốt lõi là thực hiện self-attention trong các cửa sổ cục bộ (local windows) thay vì toàn ảnh, sau đó "shift" các cửa sổ giữa các layers để tạo cross-window connections.
 
-![Swin Transformer Hierarchical Features](../../assets/images/chuong-05-torchgeo/papers/swin_page1_fig1.png)
+![Swin Transformer Hierarchical Features](../../assets/images/chuong-03-torchgeo/papers/swin_page1_fig1.png)
 
 **Hình 5.6:** So sánh hierarchical feature maps của Swin Transformer với linear patch partition của ViT [Liu et al., 2021]
 
-![Swin Shifted Window](../../assets/images/chuong-05-torchgeo/papers/swin_page2_fig1.png)
+![Swin Shifted Window](../../assets/images/chuong-03-torchgeo/papers/swin_page2_fig1.png)
 
 **Hình 5.6b:** Cơ chế shifted window attention - cửa sổ được dịch chuyển giữa các consecutive layers để tạo cross-window connection [Liu et al., 2021]
 
@@ -200,7 +200,7 @@ $$\text{depth: } d = \alpha^\phi, \quad \text{width: } w = \beta^\phi, \quad \te
 
 Với constraint $\alpha \cdot \beta^2 \cdot \gamma^2 \approx 2$ để đảm bảo FLOPs tăng gấp đôi khi $\phi$ tăng 1.
 
-![EfficientNet Scaling](../../assets/images/chuong-05-torchgeo/papers/efficientnet_page2.png)
+![EfficientNet Scaling](../../assets/images/chuong-03-torchgeo/papers/efficientnet_page2.png)
 
 **Hình 5.8:** So sánh compound scaling với scaling đơn lẻ trong EfficientNet [Tan & Le, 2019]
 

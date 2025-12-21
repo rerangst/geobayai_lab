@@ -1,4 +1,4 @@
-# 6.3.4 Giải Pháp Hạng Ba xView3: Dual-Model Pipeline và HRNet
+#4.3.4 Giải Pháp Hạng Ba xView3: Dual-Model Pipeline và HRNet
 
 ## Lời Dẫn
 

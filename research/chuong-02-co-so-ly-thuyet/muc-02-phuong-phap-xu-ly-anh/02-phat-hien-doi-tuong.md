@@ -60,6 +60,8 @@ Trong bottom-up pathway, feature map giảm dần về spatial resolution và t�
 
 FPN có thể được tích hợp với Faster R-CNN bằng cách: (1) chạy RPN trên tất cả các mức của pyramid, (2) assign proposals cho các mức dựa trên kích thước (đối tượng nhỏ → mức cao resolution, đối tượng lớn → mức thấp resolution), và (3) thực hiện RoI pooling từ mức tương ứng.
 
+**Trong TorchGeo:** Thư viện TorchGeo (**Chương 5**) cung cấp implementation sẵn của Faster R-CNN và RetinaNet với FPN, hỗ trợ nhiều backbones bao gồm ResNet và Swin Transformer. Các mô hình này có thể được khởi tạo với pre-trained weights từ Sentinel-1/Sentinel-2 cho ship detection và các bài toán viễn thám khác.
+
 ### 3.9.4. Cascade R-CNN
 
 Cascade R-CNN giải quyết vấn đề mismatch giữa IoU threshold trong training và quality của proposals. Trong Faster R-CNN tiêu chuẩn, một IoU threshold cố định (thường 0.5) được sử dụng để định nghĩa positive/negative proposals. Proposals có IoU thấp hơn ngưỡng này không được huấn luyện, dẫn đến detector không tối ưu cho các detection có IoU cao.

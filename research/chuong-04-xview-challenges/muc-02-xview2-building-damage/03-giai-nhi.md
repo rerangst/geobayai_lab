@@ -1,4 +1,4 @@
-# 6.2.3 Giải Pháp Hạng Nhì xView2: Mixed-Precision Training
+#4.2.3 Giải Pháp Hạng Nhì xView2: Mixed-Precision Training
 
 ## Lời Dẫn
 

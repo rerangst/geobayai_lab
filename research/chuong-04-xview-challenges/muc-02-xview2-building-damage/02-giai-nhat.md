@@ -1,4 +1,4 @@
-# 6.2.2 Giải Pháp Hạng Nhất xView2: Kiến Trúc Siamese U-Net
+#4.2.2 Giải Pháp Hạng Nhất xView2: Kiến Trúc Siamese U-Net
 
 ## Lời Dẫn
 
@@ -58,6 +58,8 @@ Việc định vị công trình từ ảnh trước thảm họa có ưu điể
 ### 2.1 Pipeline Hai Giai Đoạn
 
 Dựa trên insight trên, giải pháp được thiết kế thành hai giai đoạn độc lập, mỗi giai đoạn tối ưu cho nhiệm vụ riêng:
+
+> **Tham khảo Chương 3**: Kiến trúc ResNet và EfficientNet được trình bày tại [Mục 3.2 - Classification Models](/chuong-03-kien-truc-model/muc-02-classification/01-classification-models), và U-Net được giới thiệu trong [Mục 3.3 - Segmentation Models](/chuong-03-kien-truc-model/muc-03-segmentation/01-segmentation-models).
 
 ```mermaid
 flowchart TB

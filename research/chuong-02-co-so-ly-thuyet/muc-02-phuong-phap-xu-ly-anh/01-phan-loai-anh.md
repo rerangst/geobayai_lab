@@ -54,7 +54,7 @@ Transfer learning là kỹ thuật quan trọng trong classification viễn thá
 
 Có nhiều chiến lược fine-tuning khác nhau. Trong feature extraction, toàn bộ backbone được đóng băng (freeze weights), chỉ huấn luyện classifier head mới. Cách này nhanh và ổn định nhưng có thể không tối ưu nếu domain viễn thám khác biệt nhiều so với ImageNet. Trong fine-tuning toàn bộ mạng, tất cả các lớp được cập nhật với learning rate thấp để tránh phá hủy pre-trained features. Một chiến lược phổ biến là sử dụng learning rate thấp hơn cho các lớp đầu (layer-wise learning rate decay).
 
-TorchGeo cung cấp các pre-trained weights đặc biệt cho ảnh vệ tinh, huấn luyện trên Sentinel-1, Sentinel-2, và Landsat. Các weights này thường cho kết quả tốt hơn ImageNet weights cho các bài toán viễn thám do domain similarity.
+**TorchGeo Pre-trained Weights:** Thư viện TorchGeo (xem **Chương 5**) cung cấp các pre-trained weights đặc biệt cho ảnh vệ tinh, được huấn luyện trên Sentinel-1 SAR, Sentinel-2 multispectral, và Landsat. Các weights này bao gồm ResNet-50, ViT, và Swin Transformer được pre-train bằng các phương pháp self-supervised như MoCo và MAE trên hàng triệu ảnh vệ tinh. Các weights này thường cho kết quả tốt hơn ImageNet weights cho các bài toán viễn thám do domain similarity và khả năng xử lý đa kênh phổ.
 
 ### 3.3.3. Xử lý Ảnh Đa kênh (Multi-channel Input)
 

@@ -1,4 +1,4 @@
-# 6.2.4 Giải Pháp Hạng Ba xView2: Ensemble và Pseudo-Labeling
+#4.2.4 Giải Pháp Hạng Ba xView2: Ensemble và Pseudo-Labeling
 
 ## Lời Dẫn
 

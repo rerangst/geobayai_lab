@@ -1,4 +1,4 @@
-# 6.2.1 Bộ Dữ Liệu xBD: Đánh Giá Thiệt Hại Công Trình Sau Thảm Họa
+#4.2.1 Bộ Dữ Liệu xBD: Đánh Giá Thiệt Hại Công Trình Sau Thảm Họa
 
 ## Lời Dẫn
 

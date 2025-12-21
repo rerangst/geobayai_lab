@@ -1,4 +1,4 @@
-# 6.3.2 Giải Pháp Hạng Nhất xView3: Kiến Trúc CircleNet
+#4.3.2 Giải Pháp Hạng Nhất xView3: Kiến Trúc CircleNet
 
 ## Lời Dẫn
 
@@ -60,6 +60,8 @@ Nhóm tác giả nhận ra rằng với kích thước tàu nhỏ (10-100 pixels
 ### 2.1 Ý Tưởng Cốt Lõi
 
 CircleNet kết hợp hai ý tưởng mạnh mẽ: phát hiện dựa trên điểm từ CenterNet và skip connections độ phân giải cao từ U-Net. Tên gọi "CircleNet" xuất phát từ việc biểu diễn mỗi tàu như một điểm tròn trên heatmap.
+
+> **Tham khảo Chương 3**: Kiến trúc EfficientNet được trình bày tại [Mục 3.2 - Classification Models](/chuong-03-kien-truc-model/muc-02-classification/01-classification-models), và U-Net decoder với skip connections được giới thiệu trong [Mục 3.3 - Segmentation Models](/chuong-03-kien-truc-model/muc-03-segmentation/01-segmentation-models).
 
 ```mermaid
 flowchart TB

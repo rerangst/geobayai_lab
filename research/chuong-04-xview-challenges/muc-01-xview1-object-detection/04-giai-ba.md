@@ -1,4 +1,4 @@
-# 6.1.4 Giải Pháp Hạng Ba xView1: Multi-Scale Pattern Recognition
+#4.1.4 Giải Pháp Hạng Ba xView1: Multi-Scale Pattern Recognition
 
 ## Lời Dẫn
 

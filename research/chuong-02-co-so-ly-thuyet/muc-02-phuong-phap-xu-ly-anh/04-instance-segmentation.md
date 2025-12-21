@@ -49,6 +49,8 @@ Mask loss là average binary cross-entropy, chỉ tính trên mask của ground 
 
 **Ưu điểm:** Mask R-CNN đạt kết quả state-of-the-art và là baseline cho hầu hết các nghiên cứu instance segmentation. Kiến trúc modular cho phép dễ dàng thay đổi backbone hoặc thêm các branch khác.
 
+**Trong TorchGeo:** Thư viện TorchGeo (**Chương 5**) cung cấp Mask R-CNN với các backbones pre-trained trên ảnh vệ tinh, hữu ích cho các bài toán như building instance segmentation trong xView2 challenge.
+
 ### 3.19.2. YOLACT và YOLACT++
 
 YOLACT (You Only Look At CoefficienTs) là real-time instance segmentation model, đạt tốc độ 30+ FPS với độ chính xác cạnh tranh.
@@ -162,3 +164,13 @@ Trong nhiều ứng dụng viễn thám, hybrid approach có thể được sử
 - Post-processing để extract instances từ semantic masks (connected component analysis)
 
 Ví dụ, cho oil spill: semantic segmentation phân vùng toàn bộ oil spill region, sau đó connected component analysis tách thành các vết dầu riêng biệt nếu cần.
+
+---
+
+## Kết chương
+
+Chương này đã trình bày các kiến thức nền tảng về CNN và các bài toán xử lý ảnh trong viễn thám. Từ các thành phần cơ bản của CNN (convolution, pooling, activation) đến các kiến trúc backbone hiện đại (ResNet, EfficientNet, ViT, Swin Transformer), và các phương pháp xử lý ảnh từ classification, object detection, đến semantic và instance segmentation.
+
+Các kiến thức này tạo nền tảng để hiểu các implementation cụ thể trong **Chương 5** về thư viện TorchGeo - công cụ chuyên biệt cho deep learning trong viễn thám. TorchGeo cung cấp các mô hình pre-trained, datasets, và transforms được tối ưu cho ảnh vệ tinh, cho phép áp dụng các phương pháp đã học vào thực tế.
+
+Tiếp theo, **Chương 6** sẽ phân tích ba cuộc thi xView Challenges (object detection, building damage assessment, maritime detection) và 15 giải pháp hàng đầu, minh họa cách các kiến trúc và kỹ thuật đã học được áp dụng để giải quyết các bài toán viễn thám thách thức trong thực tế.

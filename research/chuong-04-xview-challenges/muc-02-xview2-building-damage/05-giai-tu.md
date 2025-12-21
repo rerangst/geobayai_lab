@@ -1,4 +1,4 @@
-# 6.2.5 Giải Pháp Hạng Tư xView2: Config-Driven Architecture
+#4.2.5 Giải Pháp Hạng Tư xView2: Config-Driven Architecture
 
 ## Lời Dẫn
 

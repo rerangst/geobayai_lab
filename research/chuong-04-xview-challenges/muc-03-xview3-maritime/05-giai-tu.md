@@ -1,4 +1,4 @@
-# 6.3.5 Giải Pháp Hạng Tư xView3: Self-Training và AI2 Skylight
+#4.3.5 Giải Pháp Hạng Tư xView3: Self-Training và AI2 Skylight
 
 ## Lời Dẫn
 

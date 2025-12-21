@@ -18,8 +18,9 @@ export default withMermaid(
       nav: [
         { text: 'Trang chủ', link: '/' },
         { text: 'Giới thiệu', link: '/chuong-01-gioi-thieu/muc-01-tong-quan/01-gioi-thieu-cnn-deep-learning' },
-        { text: 'TorchGeo', link: '/chuong-05-torchgeo/muc-01-tong-quan/01-tong-quan' },
+        { text: 'Kiến trúc Model', link: '/chuong-03-kien-truc-model/muc-01-tong-quan/01-tong-quan' },
         { text: 'xView', link: '/chuong-04-xview-challenges/00-gioi-thieu-xview' },
+        { text: 'Ứng dụng', link: '/chuong-05-ung-dung-tau-bien/muc-01-dac-diem-bai-toan/01-dac-diem' },
       ],
 
       sidebar: [
@@ -94,6 +95,26 @@ export default withMermaid(
                 { text: 'Giải năm', link: '/chuong-04-xview-challenges/muc-03-xview3-maritime/06-giai-nam' },
               ]
             },
+          ]
+        },
+        {
+          text: 'Chương 5: Phát hiện Tàu biển',
+          collapsed: true,
+          items: [
+            { text: '5.1. Đặc điểm bài toán', link: '/chuong-05-ung-dung-tau-bien/muc-01-dac-diem-bai-toan/01-dac-diem' },
+            { text: '5.2. Các mô hình', link: '/chuong-05-ung-dung-tau-bien/muc-02-mo-hinh/01-cac-mo-hinh' },
+            { text: '5.3. Quy trình xử lý', link: '/chuong-05-ung-dung-tau-bien/muc-03-quy-trinh/01-pipeline' },
+            { text: '5.4. Bộ dữ liệu', link: '/chuong-05-ung-dung-tau-bien/muc-04-bo-du-lieu/01-datasets' },
+          ]
+        },
+        {
+          text: 'Chương 6: Phát hiện Dầu loang',
+          collapsed: true,
+          items: [
+            { text: '6.1. Đặc điểm bài toán', link: '/chuong-06-ung-dung-dau-loang/muc-01-dac-diem-bai-toan/01-dac-diem' },
+            { text: '6.2. Các mô hình', link: '/chuong-06-ung-dung-dau-loang/muc-02-mo-hinh/01-cac-mo-hinh' },
+            { text: '6.3. Quy trình xử lý', link: '/chuong-06-ung-dung-dau-loang/muc-03-quy-trinh/01-pipeline' },
+            { text: '6.4. Bộ dữ liệu', link: '/chuong-06-ung-dung-dau-loang/muc-04-bo-du-lieu/01-datasets' },
           ]
         },
         {

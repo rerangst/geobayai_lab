@@ -1,4 +1,4 @@
-# 6.1.1 Bộ Dữ Liệu xView1: Nền Tảng Cho Phát Hiện Đối Tượng Quy Mô Lớn
+#4.1.1 Bộ Dữ Liệu xView1: Nền Tảng Cho Phát Hiện Đối Tượng Quy Mô Lớn
 
 ## Lời Dẫn
 

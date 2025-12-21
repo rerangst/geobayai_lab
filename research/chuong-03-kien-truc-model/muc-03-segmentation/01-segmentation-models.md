@@ -43,7 +43,7 @@ graph TD
 
 **Hình 5.9:** Kiến trúc U-Net với encoder-decoder đối xứng và skip connections
 
-![U-Net Segmentation Example](../../assets/images/chuong-05-torchgeo/papers/unet_page3_fig1.png)
+![U-Net Segmentation Example](../../assets/images/chuong-03-torchgeo/papers/unet_page3_fig1.png)
 
 **Hình 5.9b:** Ví dụ segmentation với U-Net - input image (trái), ground truth (giữa), prediction (phải) [Ronneberger et al., 2015]
 
@@ -239,7 +239,7 @@ graph LR
 
 HRNet [Wang et al., 2019] đề xuất cách tiếp cận hoàn toàn khác: thay vì downsampling rồi upsampling, duy trì high-resolution representation xuyên suốt network. Các streams với resolution khác nhau chạy song song và liên tục exchange thông tin.
 
-![HRNet Architecture](../../assets/images/chuong-05-torchgeo/papers/hrnet_page2.png)
+![HRNet Architecture](../../assets/images/chuong-03-torchgeo/papers/hrnet_page2.png)
 
 **Hình 5.14:** Kiến trúc HRNet với các parallel high-resolution streams và multi-resolution fusion [Wang et al., 2019]
 

@@ -1,4 +1,4 @@
-# 6.2.6 Giải Pháp Hạng Năm xView2: Dual-HRNet
+#4.2.6 Giải Pháp Hạng Năm xView2: Dual-HRNet
 
 ## Lời Dẫn
 

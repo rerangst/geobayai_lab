@@ -1,4 +1,4 @@
-# 6.1.3 Giải Pháp Hạng Nhì xView1: Domain Adversarial Training
+#4.1.3 Giải Pháp Hạng Nhì xView1: Domain Adversarial Training
 
 ## Lời Dẫn
 

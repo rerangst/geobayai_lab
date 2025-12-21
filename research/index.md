@@ -17,15 +17,15 @@ features:
   - title: Chương 1-2 - Lý thuyết
     details: Giới thiệu CNN, kiến trúc cơ bản, backbone networks, và các phương pháp xử lý ảnh viễn thám
     link: /chuong-01-gioi-thieu/muc-01-tong-quan/01-gioi-thieu-cnn-deep-learning
-  - title: Chương 3-4 - Ứng dụng
-    details: Phát hiện tàu biển (Ship Detection) và phát hiện dầu loang (Oil Spill Detection)
-    link: /chuong-03-phat-hien-tau-bien/muc-01-dac-diem-bai-toan/01-dac-diem
-  - title: Chương 5 - TorchGeo
-    details: Thư viện PyTorch cho dữ liệu địa lý - classification, segmentation, change detection
-    link: /chuong-05-torchgeo/muc-01-tong-quan/01-tong-quan
-  - title: Chương 6 - xView Challenges
+  - title: Chương 3 - Kiến trúc Model
+    details: TorchGeo - Classification, Segmentation, Change Detection, Pre-trained Weights
+    link: /chuong-03-kien-truc-model/muc-01-tong-quan/01-tong-quan
+  - title: Chương 4 - xView Challenges
     details: Phân tích 3 cuộc thi xView với 15 giải pháp chiến thắng
-    link: /chuong-06-xview-challenges/muc-01-xview1-object-detection/01-dataset
+    link: /chuong-04-xview-challenges/00-gioi-thieu-xview
+  - title: Chương 5-6 - Ứng dụng
+    details: Phát hiện tàu biển (Ship Detection) và phát hiện dầu loang (Oil Spill Detection)
+    link: /chuong-05-ung-dung-tau-bien/muc-01-dac-diem-bai-toan/01-dac-diem
 ---
 
 ## Cấu trúc Tài liệu
@@ -34,13 +34,13 @@ features:
 |--------|----------|-------|
 | 1 | Giới thiệu CNN & Deep Learning | 1 |
 | 2 | Cơ sở lý thuyết | 6 |
-| 3 | Phát hiện tàu biển | 4 |
-| 4 | Phát hiện dầu loang | 4 |
-| 5 | TorchGeo | 5 |
-| 6 | xView Challenges | 18 |
+| 3 | Kiến trúc Model (TorchGeo) | 5 |
+| 4 | xView Challenges | 19 |
+| 5 | Phát hiện tàu biển | 4 |
+| 6 | Phát hiện dầu loang | 4 |
 | 7 | Kết luận | 1 |
 
-**Tổng:** 39 files
+**Tổng:** 40 files
 
 ## Tài liệu Tham khảo
 

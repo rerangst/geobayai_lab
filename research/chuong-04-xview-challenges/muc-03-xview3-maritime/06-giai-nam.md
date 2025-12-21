@@ -1,4 +1,4 @@
-# 6.3.6 Giải Pháp Hạng Năm xView3: Geographic Context và GSHHG
+#4.3.6 Giải Pháp Hạng Năm xView3: Geographic Context và GSHHG
 
 ## Lời Dẫn
 

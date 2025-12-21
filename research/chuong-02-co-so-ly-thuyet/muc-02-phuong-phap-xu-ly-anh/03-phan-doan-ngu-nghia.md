@@ -74,7 +74,7 @@ Feature Pyramid Network (FPN), ban đầu được thiết kế cho object detec
 
 **Panoptic FPN:** Là extension của FPN cho segmentation, thêm một lightweight semantic segmentation branch lên trên FPN features. Branch này upsample và merge predictions từ tất cả các levels của pyramid.
 
-**FPN trong TorchGeo:** TorchGeo cung cấp FPN-based segmentation models với various backbones, phù hợp cho các bài toán viễn thám đòi hỏi xử lý đối tượng đa tỷ lệ.
+**Trong TorchGeo:** Thư viện TorchGeo (**Chương 5**) cung cấp implementation sẵn của U-Net, DeepLabV3+, và FPN-based segmentation models với nhiều backbones (ResNet, EfficientNet, Swin Transformer). Các mô hình này hỗ trợ đa kênh phổ input và có thể khởi tạo với pre-trained weights từ Sentinel-1/Sentinel-2, đặc biệt hữu ích cho oil spill detection và land cover mapping.
 
 ### 3.14.5. Các Kiến trúc Khác
 

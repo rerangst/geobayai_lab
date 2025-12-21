@@ -150,7 +150,7 @@ TorchGeo tích hợp sẵn nhiều benchmark datasets phổ biến trong cộng 
 
 Hình 5.3 minh họa cách TorchGeo xử lý việc sampling dữ liệu từ nhiều nguồn (Landsat + Cropland Data Layer) với căn chỉnh CRS tự động.
 
-![TorchGeo Geospatial Data Sampling](../../assets/images/chuong-05-torchgeo/papers/torchgeo_page2_fig1.png)
+![TorchGeo Geospatial Data Sampling](../../assets/images/chuong-03-torchgeo/papers/torchgeo_page2_fig1.png)
 
 **Hình 5.3:** Minh họa cơ chế geospatial data sampling của TorchGeo, kết hợp ảnh Landsat với Cropland Data Layer [Stewart et al., 2022]
 

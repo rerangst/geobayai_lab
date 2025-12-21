@@ -1,4 +1,4 @@
-# 6.1.6 Giải Pháp Hạng Năm xView1: Dual-CNN Feature Extraction
+#4.1.6 Giải Pháp Hạng Năm xView1: Dual-CNN Feature Extraction
 
 ## Lời Dẫn
 

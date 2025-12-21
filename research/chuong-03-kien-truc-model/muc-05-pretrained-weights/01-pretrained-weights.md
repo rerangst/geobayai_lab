@@ -50,7 +50,7 @@ Kết quả cho thấy domain-specific weights cải thiện 1.5-2% so với Ima
 
 Self-supervised learning (SSL) đã cách mạng hóa việc pre-training bằng cách tận dụng lượng dữ liệu không nhãn khổng lồ. Trong remote sensing, SSL đặc biệt quan trọng vì dữ liệu vệ tinh có sẵn ở quy mô petabyte nhưng việc tạo nhãn lại tốn kém và đòi hỏi chuyên môn.
 
-![Masked Autoencoder Concept](../../assets/images/chuong-05-torchgeo/papers/mae_page1_fig1.png)
+![Masked Autoencoder Concept](../../assets/images/chuong-03-torchgeo/papers/mae_page1_fig1.png)
 *Hình 5.5.1: Minh họa khái niệm Masked Autoencoder (MAE) - mask ngẫu nhiên 75% patches và reconstruct lại.*
 
 ### 5.5.3.1. Momentum Contrast (MoCo v2)
@@ -78,7 +78,7 @@ graph LR
 - Hiệu quả trên setup 8-GPU tiêu chuẩn
 - Đạt 71.1% linear eval accuracy trên ImageNet
 
-![MoCo v2 Improvements](../../assets/images/chuong-05-torchgeo/papers/moco-v2_page1.png)
+![MoCo v2 Improvements](../../assets/images/chuong-03-torchgeo/papers/moco-v2_page1.png)
 
 *Hình 5.5.1b: MoCo v2 improvements so với v1 - thêm MLP head và stronger augmentations [Chen et al., 2020]*
 
@@ -113,7 +113,7 @@ graph TB
 - Centering và sharpening ngăn collapse
 - Learned features có implicit semantic segmentation
 
-![DINO Self-Attention](../../assets/images/chuong-05-torchgeo/papers/dino_page1_fig1.png)
+![DINO Self-Attention](../../assets/images/chuong-03-torchgeo/papers/dino_page1_fig1.png)
 
 *Hình 5.5.1c: DINO self-attention maps - cho thấy model tự động học implicit semantic segmentation mà không cần nhãn [Caron et al., 2021]*
 
@@ -145,7 +145,7 @@ graph LR
 - Strong benchmark results trên ImageNet
 - Effective transfer to downstream tasks
 
-![MAE Reconstruction](../../assets/images/chuong-05-torchgeo/papers/mae_page1_fig2.png)
+![MAE Reconstruction](../../assets/images/chuong-03-torchgeo/papers/mae_page1_fig2.png)
 
 *Hình 5.5.1d: MAE reconstruction example - từ 25% visible patches reconstruct lại 75% masked patches [He et al., 2022]*
 
@@ -160,7 +160,7 @@ MAE đặc biệt phù hợp với RS vì lượng dữ liệu không nhãn kh�
 
 SSL4EO-S12 (Self-Supervised Learning for Earth Observation on Sentinel-1/2) là initiative quan trọng cung cấp cả dataset và pre-trained weights cho cộng đồng remote sensing.
 
-![SSL4EO Dataset Overview](../../assets/images/chuong-05-torchgeo/papers/ssl4eo_page2_fig1.jpeg)
+![SSL4EO Dataset Overview](../../assets/images/chuong-03-torchgeo/papers/ssl4eo_page2_fig1.jpeg)
 *Hình 5.5.2: Tổng quan dataset SSL4EO với phạm vi phủ toàn cầu và đa thời điểm.*
 
 **Thành phần chính:**
@@ -209,7 +209,7 @@ Kết quả benchmark cho thấy SSL4EO weights đạt hoặc vượt supervised
 
 SatMAE mở rộng MAE với các adaptation đặc biệt cho satellite imagery:
 
-![SatMAE Architecture](../../assets/images/chuong-05-torchgeo/papers/satmae_page4_fig1.jpeg)
+![SatMAE Architecture](../../assets/images/chuong-03-torchgeo/papers/satmae_page4_fig1.jpeg)
 *Hình 5.5.3: Kiến trúc SatMAE với temporal encoding và multi-spectral handling.*
 
 **Các cải tiến chính:**
@@ -243,7 +243,7 @@ SatMAE đặc biệt mạnh cho các task yêu cầu phân tích temporal:
 
 Prithvi-EO, được phát triển bởi IBM và NASA, đại diện cho bước tiến lớn trong geospatial AI. Với kiến trúc transformer quy mô lớn (100M-600M parameters) được pre-train trên hơn 1TB dữ liệu multispectral, Prithvi đạt state-of-the-art trên nhiều downstream tasks.
 
-![Prithvi Architecture](../../assets/images/chuong-05-torchgeo/papers/prithvi_page3_fig3.jpeg)
+![Prithvi Architecture](../../assets/images/chuong-03-torchgeo/papers/prithvi_page3_fig3.jpeg)
 
 *Hình 5.5.4: Minh họa multi-temporal satellite patches làm input cho Prithvi model [Jakubik et al., 2023]*
 
