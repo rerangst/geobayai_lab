@@ -90,31 +90,73 @@ EfficientNet đạt được sự cân bằng ấn tượng giữa accuracy và 
 
 Đối với các bài toán viễn thám, EfficientNet là lựa chọn hấp dẫn do khả năng xử lý ảnh có độ phân giải cao (compound scaling bao gồm resolution) và efficiency cho phép triển khai trên các thiết bị edge hoặc xử lý khối lượng ảnh lớn.
 
-## 2.14. Swin Transformer: Vision Transformer Phân cấp
+## 2.14. Vision Transformer (ViT): Transformer cho Computer Vision
 
-### 2.14.1. Từ ViT đến Swin Transformer
+### 2.14.1. Từ NLP sang Vision
 
-Vision Transformer (ViT) năm 2020 đã chứng minh rằng kiến trúc Transformer thuần túy có thể đạt được kết quả cạnh tranh với CNN trên các bài toán thị giác máy tính. Tuy nhiên, ViT có một số hạn chế cho các bài toán dense prediction như object detection và segmentation: độ phức tạp tính toán O(n²) với số lượng token n khiến việc xử lý ảnh độ phân giải cao trở nên không khả thi, và thiếu tính phân cấp đa tỷ lệ như CNN.
+Transformer architecture, ban đầu được phát triển cho xử lý ngôn ngữ tự nhiên (NLP), đạt thành công vượt bậc với các mô hình như BERT và GPT. Vision Transformer (ViT), được đề xuất bởi Dosovitskiy và cộng sự năm 2020, là nỗ lực đầu tiên áp dụng kiến trúc Transformer thuần túy (không dùng convolution) cho image classification và đạt kết quả cạnh tranh với các CNN state-of-the-art.
 
-Swin Transformer (Shifted Window Transformer) được đề xuất để khắc phục những hạn chế này, trở thành backbone phổ biến cho nhiều bài toán thị giác máy tính hiện đại.
+### 2.14.2. Kiến trúc ViT
 
-### 2.14.2. Hierarchical Feature Maps
+**Patch Embedding:** Thay vì xử lý từng pixel, ViT chia ảnh đầu vào H×W×C thành các patch không chồng lấp, mỗi patch có kích thước P×P (thường P=16 hoặc 32). Mỗi patch được flatten thành vector và ánh xạ qua linear projection thành embedding vector có chiều D. Với ảnh 224×224 và patch size 16, ta có (224/16)² = 196 patches.
+
+**Position Embedding:** Không giống CNN có inductive bias về cấu trúc không gian, Transformer cần được cung cấp thông tin vị trí tường minh. ViT thêm learnable position embedding vào mỗi patch embedding để mã hóa vị trí 2D của patch trong ảnh gốc.
+
+**Transformer Encoder:** Chuỗi patch embeddings (cộng với một [CLS] token đặc biệt ở đầu) được đưa qua L layers của Transformer encoder. Mỗi layer gồm: Multi-Head Self-Attention (MSA) cho phép mỗi patch "attend" tới tất cả các patches khác, và Feed-Forward Network (FFN) áp dụng MLP riêng biệt cho từng patch. Layer Normalization và residual connections được sử dụng.
+
+**Classification Head:** Output của [CLS] token từ layer cuối cùng được đưa qua một MLP head để tạo ra class probabilities.
+
+### 2.14.3. Ưu và Nhược điểm của ViT
+
+**Ưu điểm:**
+- **Long-range dependencies:** Self-attention cho phép mô hình hóa mối quan hệ giữa các vùng xa nhau trong ảnh ngay từ layer đầu tiên, khác với CNN cần xếp chồng nhiều layers để mở rộng receptive field.
+- **Scaling tốt với dữ liệu:** Khi được pre-train trên datasets cực lớn (hàng trăm triệu ảnh như JFT-300M), ViT vượt trội hơn CNN. Transformer architecture có khả năng scaling tốt hơn với cả model size và data size.
+- **Transfer learning hiệu quả:** Pre-trained ViT weights chuyển giao tốt sang các downstream tasks.
+
+**Nhược điểm:**
+- **Cần dữ liệu lớn:** Không có inductive bias như CNN (locality, translation invariance), ViT cần lượng lớn dữ liệu training. Khi train từ đầu trên ImageNet-1K, ViT không tốt bằng ResNet. Chỉ khi pre-train trên datasets lớn hơn nhiều, ViT mới phát huy ưu thế.
+- **Độ phức tạp O(n²):** Self-attention có độ phức tạp bậc hai theo số patches, không hiệu quả cho ảnh độ phân giải cao hoặc dense prediction tasks.
+- **Thiếu multi-scale features:** ViT output single-scale feature map, không phù hợp cho object detection và segmentation yêu cầu multi-scale representations.
+
+## 2.15. Swin Transformer: Hierarchical Vision Transformer
+
+### 2.15.1. Khắc phục Hạn chế của ViT
+
+Swin Transformer (Shifted Window Transformer), được đề xuất bởi Liu và cộng sự năm 2021, giải quyết các hạn chế của ViT để trở thành backbone general-purpose cho nhiều vision tasks. Hai cải tiến chính là hierarchical architecture và window-based self-attention.
+
+### 2.15.2. Hierarchical Feature Maps
 
 Giống như CNN, Swin Transformer tạo ra feature map phân cấp với độ phân giải giảm dần. Ảnh đầu vào được chia thành các patch không chồng lấp (thường 4×4 pixel mỗi patch), sau đó qua các stage với patch merging giảm resolution 2× và tăng số kênh 2× tại mỗi stage. Kết quả là feature maps với tỷ lệ 1/4, 1/8, 1/16, 1/32 so với ảnh gốc - tương tự như output của các stage trong ResNet.
 
-### 2.14.3. Window-based Self-Attention
+### 2.15.3. Window-based Self-Attention
 
 Thay vì tính global self-attention trên toàn bộ ảnh (như ViT), Swin Transformer chia feature map thành các window không chồng lấp (thường 7×7 patch mỗi window) và tính self-attention trong từng window. Điều này giảm độ phức tạp từ O(n²) xuống O(n × M²) với M là kích thước window, cho phép xử lý ảnh độ phân giải cao.
 
 Để tạo kết nối giữa các window, Swin Transformer sử dụng shifted window partitioning: trong các lớp xen kẽ, các window được dịch chuyển (window_size/2, window_size/2) pixel. Điều này cho phép thông tin được trao đổi giữa các window liền kề qua các lớp liên tiếp, mở rộng receptive field mà không tăng chi phí tính toán.
 
-### 2.14.4. Ứng dụng trong Viễn thám
+### 2.15.4. Ứng dụng trong Viễn thám
 
 Swin Transformer và các biến thể như Swin-V2 đã chứng minh hiệu quả vượt trội trong nhiều bài toán viễn thám. Khả năng mô hình hóa long-range dependencies thông qua self-attention đặc biệt hữu ích cho các bài toán yêu cầu ngữ cảnh rộng như phân loại scene, change detection, và segmentation các đối tượng lớn. TorchGeo cung cấp Swin Transformer pre-trained trên ảnh NAIP, cho phép transfer learning hiệu quả cho các bài toán viễn thám.
 
-## 2.15. So sánh và Lựa chọn Backbone
+## 2.16. Self-Supervised Pre-training
 
-### 2.15.1. Bảng So sánh
+### 2.16.1. Contrastive Learning: MoCo
+
+Momentum Contrast (MoCo) là phương pháp self-supervised learning sử dụng contrastive loss. Ý tưởng cốt lõi là học representations bằng cách maximize agreement giữa các augmented views khác nhau của cùng một ảnh (positive pairs) trong khi minimize agreement giữa các ảnh khác nhau (negative pairs). MoCo v2 và v3 đã được áp dụng thành công cho pre-training backbone trên ảnh vệ tinh.
+
+### 2.16.2. Masked Image Modeling: MAE
+
+Masked Autoencoder (MAE) áp dụng ý tưởng masked language modeling (từ BERT) cho vision. Một tỷ lệ lớn patches (75%) được mask ngẫu nhiên, và mô hình học cách reconstruct các patches bị mask từ các patches visible. MAE đặc biệt hiệu quả cho ViT và đã được TorchGeo sử dụng để pre-train trên Sentinel-2 và Landsat.
+
+**SatMAE** là biến thể của MAE được thiết kế đặc biệt cho ảnh vệ tinh đa phổ, xử lý hiệu quả việc pre-train trên 13 kênh của Sentinel-2.
+
+### 2.16.3. SSL4EO: Self-Supervised Learning for Earth Observation
+
+SSL4EO là framework pre-training tổng hợp cho Earth Observation, kết hợp các kỹ thuật self-supervised learning hiện đại với đặc thù của ảnh vệ tinh. Framework cung cấp pre-trained weights cho nhiều backbones trên datasets lớn như Million-AID, giúp cải thiện đáng kể performance cho các downstream tasks viễn thám với limited labeled data.
+
+## 2.17. So sánh Backbone: CNN vs Transformer
+
+### 2.17.1. Bảng So sánh Performance
 
 | Backbone | Params | Top-1 Acc | FLOPs | Đặc điểm chính |
 |----------|--------|-----------|-------|----------------|
@@ -123,19 +165,56 @@ Swin Transformer và các biến thể như Swin-V2 đã chứng minh hiệu qu�
 | ResNet-101 | 45M | 77.4% | 7.9G | Deeper ResNet, accuracy cao hơn |
 | EfficientNet-B0 | 5.3M | 77.3% | 0.4G | Nhỏ gọn, hiệu quả |
 | EfficientNet-B4 | 19M | 82.9% | 4.2G | Cân bằng accuracy/efficiency |
-| Swin-T | 29M | 81.3% | 4.5G | Transformer, attention mechanism |
+| ViT-B/16 | 86M | 77.9%* | 17.6G | Transformer, cần dữ liệu lớn (*khi pre-train trên ImageNet-21K) |
+| Swin-T | 29M | 81.3% | 4.5G | Hierarchical Transformer, efficient |
 | Swin-B | 88M | 83.5% | 15.4G | Larger Swin, SOTA accuracy |
 
-### 2.15.2. Khuyến nghị cho Viễn thám
+### 2.17.2. So sánh CNN và Transformer cho Viễn thám
 
-Đối với bài toán phát hiện tàu biển (Ship Detection):
-- **Thời gian thực, edge deployment:** EfficientNet-B0/B1 hoặc MobileNetV3
-- **Accuracy cao, không giới hạn tài nguyên:** ResNet-101 hoặc Swin-T/Swin-B
-- **Cân bằng accuracy/speed:** ResNet-50 hoặc EfficientNet-B3
+| Khía cạnh | CNN (ResNet, EfficientNet) | Transformer (ViT, Swin) |
+|-----------|---------------------------|-------------------------|
+| **Inductive bias** | Locality, translation invariance | Minimal (học từ data) |
+| **Yêu cầu dữ liệu** | Thấp - tốt với limited data | Cao - cần pre-training hoặc large dataset |
+| **Receptive field** | Tăng dần qua layers | Global từ đầu (ViT) hoặc hierarchical (Swin) |
+| **Multi-scale** | Tự nhiên với pooling/stride | Cần thiết kế đặc biệt (Swin) |
+| **Long-range dependencies** | Khó (cần deep network) | Dễ (self-attention) |
+| **Hiệu quả tính toán** | Cao, phù hợp edge devices | Trung bình đến thấp (ViT O(n²)) |
+| **Transfer learning** | ImageNet → RS: tốt | ImageNet → RS: tốt, SSL (MAE) → RS: rất tốt |
+| **Ảnh SAR** | ResNet pre-trained on Sentinel-1 | ViT/Swin với SatMAE |
+| **Ảnh đa phổ** | Conv đầu mở rộng cho C kênh | Patch embedding tự nhiên hỗ trợ C kênh |
 
-Đối với bài toán phát hiện dầu loang (Oil Spill Detection):
-- **Segmentation accuracy cao:** ResNet-101 làm encoder cho U-Net/DeepLabV3+
-- **Multi-scale features quan trọng:** EfficientNet với FPN
-- **Long-range context cần thiết:** Swin Transformer
+### 2.17.3. Khuyến nghị cho Viễn thám
 
-Trong TorchGeo, các pre-trained weights cho Sentinel-1 SAR có sẵn với backbone ResNet-50 và ViT, phù hợp cho cả ship detection và oil spill detection trên ảnh SAR.
+**Dùng CNN (ResNet, EfficientNet) khi:**
+- Dữ liệu training hạn chế (< 10K ảnh)
+- Cần tốc độ inference nhanh hoặc deploy trên edge devices
+- Task yêu cầu multi-scale features rõ ràng (object detection, segmentation)
+- Có pre-trained weights chất lượng trên domain tương tự (ResNet-50 on Sentinel-1)
+
+**Dùng Transformer (ViT, Swin) khi:**
+- Có lượng lớn dữ liệu hoặc sử dụng self-supervised pre-training (MAE, MoCo)
+- Task cần model long-range spatial dependencies (scene classification, change detection trên vùng rộng)
+- Có tài nguyên tính toán đủ mạnh
+- Muốn sử dụng state-of-the-art pre-trained weights từ SatMAE hoặc SSL4EO
+
+**Khuyến nghị cụ thể theo bài toán:**
+
+*Phát hiện tàu biển (Ship Detection):*
+- Thời gian thực: EfficientNet-B0/B1 + YOLO head
+- Accuracy cao: Swin-T + Faster R-CNN hoặc ResNet-101 + Cascade R-CNN
+- Cân bằng: ResNet-50 + RetinaNet
+
+*Phát hiện dầu loang (Oil Spill Segmentation):*
+- Binary segmentation: ResNet-50 + U-Net hoặc DeepLabV3+
+- Phân biệt oil/look-alike phức tạp: Swin-T + DeepLabV3+ (benefit từ long-range context)
+- Limited data: ResNet-50 pre-trained on Sentinel-1 + U-Net với extensive data augmentation
+
+*Scene classification viễn thám:*
+- ViT hoặc Swin pre-trained với SSL (MAE, SSL4EO) thường cho kết quả tốt nhất
+- ResNet-50/101 vẫn competitive và nhanh hơn
+
+**TorchGeo Pre-trained Weights:**
+- ResNet-50: Sentinel-1 SAR, Sentinel-2 multispectral
+- ViT: Sentinel-2 với SatMAE
+- Swin-T: NAIP aerial imagery
+- Prithvi: Foundation model từ IBM/NASA cho Sentinel-2

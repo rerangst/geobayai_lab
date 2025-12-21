@@ -10,9 +10,9 @@
     "build:docx": "bash scripts/build-unified-docx.sh"
   },
   "devDependencies": {
+    "mermaid": "^11.0.0",
     "vitepress": "^1.5.0",
-    "vitepress-plugin-mermaid": "^2.0.17",
-    "mermaid": "^11.0.0"
+    "vitepress-plugin-mermaid": "^2.0.17"
   },
   "keywords": [
     "xview",
@@ -21,5 +21,8 @@
     "research"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "markdown-it-mathjax3": "^4.3.2"
+  }
 }
